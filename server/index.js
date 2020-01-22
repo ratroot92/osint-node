@@ -30,7 +30,13 @@ app.engine( 'hbs', exhbs( {
  
 }));
 app.set('views',path.join(__dirname,'views'));
-app.use(express.static(path.join(__dirname,'public')));
+app.use(express.static(__dirname + "/public", {
+    index: false, 
+    immutable: true, 
+    cacheControl: true,
+    maxAge: "30d"
+}));
+app.use('/mdbootstrap', express.static(__dirname + '/node_modules/mdbootstrap'));
 app.set('view engine', 'hbs');
 
 
