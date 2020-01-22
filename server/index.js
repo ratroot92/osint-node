@@ -10,7 +10,8 @@ const exhbs  = require('express-handlebars');
 
 
 //require routres 
-var loginRouter=require('./local_app/routes/login/login.route')
+var loginRouter=require('./local_app/routes/login/login.route');
+var userRouter=require('./local_app/routes/user/user.route')
 
 
 //end require routers 
@@ -19,7 +20,7 @@ const app=express();
 
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.urlencoded({extended:true}));
 
 
 
@@ -43,7 +44,7 @@ app.set('view engine', 'hbs');
 
 //register routes here 
 app.use('/',loginRouter);
-
+app.use('/user',userRouter);
 //end reghister routes here 
 
 const PORT =process.env.PORT || 3001;

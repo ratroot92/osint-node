@@ -8,10 +8,7 @@ var db = require('mongoose');
        reequired:true,
     },
     
-    email:{
-        type:String,
-        reequired:true,
-     }, 
+    
 
     email:{
         type:String,
