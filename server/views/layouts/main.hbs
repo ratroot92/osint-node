@@ -16,179 +16,31 @@
   <!-- Your custom styles (optional) -->
   <link rel="stylesheet" href="css/style.css">
 </head>
+<style>
+  #flash_message{
+    top:2px;
+    right: 2px;
+    position:absolute;
+    width:300px;
+    height: 70px;
+    text-align:center;
+    z-index:9999;
+
+  }
+</style>
 <body>
-<!--Navbar -->
-<nav class="mb-1 navbar navbar-expand-lg navbar-dark default-color">
-  <a class="navbar-brand" href="#">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
-    aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home
-          <span class="sr-only">(current)</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Features</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Pricing</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">Dropdown
-        </a>
-        <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-    </ul>
-    <ul class="navbar-nav ml-auto nav-flex-icons">
-      <li class="nav-item">
-        <a class="nav-link waves-effect waves-light">
-          <i class="fab fa-twitter"></i>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link waves-effect waves-light">
-          <i class="fab fa-google-plus-g"></i>
-        </a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">
-          <i class="fas fa-user"></i>
-        </a>
-        <div class="dropdown-menu dropdown-menu-right dropdown-default"
-          aria-labelledby="navbarDropdownMenuLink-333">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-    </ul>
-  </div>
-</nav>
-<!--/.Navbar -->
 
+{{#if message}}
+<div class="d-flex flex-row justify-content-end  " >
+  <div class="alert alert m-0 p-0   alert-{{message.type}}" id="flash_message">
+<button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong class="text-dark font-weight-bold"style="font-size :20px">{{message.intro}}</strong>
+    <p class="font-weight-bold text-{{message.type}}" >{{message.message}}</p>
+  </div> 
+  </div>
+  {{/if}}
 {{{body}}}
- <!-- Footer -->
-<footer class="page-footer font-small mdb-color lighten-3 pt-4 fixed-bottom">
-
-  <!-- Footer Elements -->
-  <div class="container">
-
-    <!--Grid row-->
-    <div class="row">
-
-      <!--Grid column-->
-      <div class="col-lg-2 col-md-12 mb-4">
-
-        <!--Image-->
-        <div class="view overlay z-depth-1-half">
-          <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(73).jpg" class="img-fluid"
-            alt="">
-          <a href="">
-            <div class="mask rgba-white-light"></div>
-          </a>
-        </div>
-
-      </div>
-      <!--Grid column-->
-
-      <!--Grid column-->
-      <div class="col-lg-2 col-md-6 mb-4">
-
-        <!--Image-->
-        <div class="view overlay z-depth-1-half">
-          <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(78).jpg" class="img-fluid"
-            alt="">
-          <a href="">
-            <div class="mask rgba-white-light"></div>
-          </a>
-        </div>
-
-      </div>
-      <!--Grid column-->
-
-      <!--Grid column-->
-      <div class="col-lg-2 col-md-6 mb-4">
-
-        <!--Image-->
-        <div class="view overlay z-depth-1-half">
-          <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(79).jpg" class="img-fluid"
-            alt="">
-          <a href="">
-            <div class="mask rgba-white-light"></div>
-          </a>
-        </div>
-
-      </div>
-      <!--Grid column-->
-
-      <!--Grid column-->
-      <div class="col-lg-2 col-md-12 mb-4">
-
-        <!--Image-->
-        <div class="view overlay z-depth-1-half">
-          <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(81).jpg" class="img-fluid"
-            alt="">
-          <a href="">
-            <div class="mask rgba-white-light"></div>
-          </a>
-        </div>
-
-      </div>
-      <!--Grid column-->
-
-      <!--Grid column-->
-      <div class="col-lg-2 col-md-6 mb-4">
-
-        <!--Image-->
-        <div class="view overlay z-depth-1-half">
-          <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(82).jpg" class="img-fluid"
-            alt="">
-          <a href="">
-            <div class="mask rgba-white-light"></div>
-          </a>
-        </div>
-
-      </div>
-      <!--Grid column-->
-
-      <!--Grid column-->
-      <div class="col-lg-2 col-md-6 mb-4">
-
-        <!--Image-->
-        <div class="view overlay z-depth-1-half">
-          <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(84).jpg" class="img-fluid"
-            alt="">
-          <a href="">
-            <div class="mask rgba-white-light"></div>
-          </a>
-        </div>
-
-      </div>
-      <!--Grid column-->
-
-    </div>
-    <!--Grid row-->
-
-  </div>
-  <!-- Footer Elements -->
-
-  <!-- Copyright -->
-  <div class="footer-copyright text-center py-3">© 2020 Copyright:
-    <a href="https://mdbootstrap.com/education/bootstrap/"> MDBootstrap.com</a>
-  </div>
-  <!-- Copyright -->
-
-</footer>
+ 
 <!-- Footer -->
   <!-- End your project here-->
 
@@ -204,5 +56,6 @@
   <!-- Your custom scripts (optional) -->
   <script type="text/javascript"></script>
   <script src="js/js.js"></script>
+  
 </body>
 </html>

@@ -6,6 +6,8 @@ const express =require('express');
 const bodyParser=require('body-parser');
 const path=require('path');
 const exhbs  = require('express-handlebars');
+const cookieParser=require('cookie-parser');
+const expressSession=require('express-session');
 
 
 
@@ -19,9 +21,21 @@ var userRouter=require('./local_app/routes/user/user.route')
 const app=express();
 
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended:true}));
 
+app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.json());
+app.use(cookieParser('secret'));
+app.use(expressSession({
+    resave: true,
+    saveUninitialized: true
+}));
+
+//falsh mesage middleware
+app.use((req,res,next)=>{
+    res.locals.message=req.session.message,
+    delete req.session.messages
+    next()
+})
 
 
 

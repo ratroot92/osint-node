@@ -76,16 +76,17 @@
   <div class="col-md-12" id="body">
     <div class="login-page">
   <div class="form">
-    <form class="register-form">
-      <input type="text" placeholder="name" name="name" id="name/>
-      <input type="password" placeholder="password"/>
-      <input type="text" placeholder="email address"/>
+    <form class="register-form" method="POST" action="/signup">
+      <input type="text" placeholder="name" name="name" id="name" minlength="5" maxlength="50" required/>
+      <input type="password" placeholder="password" name="password" id="password" minlength="8" maxlength="14" required/>
+      <input type="email" placeholder="email address" name="email" id="email"  maxlength="50" required/>
+      
       <button>create</button>
       <p class="message">Already registered? <a href="#">Sign In</a></p>
     </form>
-    <form class="login-form">
-      <input type="text" placeholder="username"/>
-      <input type="password" placeholder="password"/>
+    <form class="login-form" method="POST" action="/login">
+      <input type="email" placeholder="username" id="email" name="email" maxlength="50" required/>
+      <input type="password" placeholder="password" id="password" name="password" minlength="8" maxlength="14" required/>
       <button>login</button>
       <p class="message">Not registered? <a href="#">Create an account</a></p>
     </form>
@@ -94,3 +95,22 @@
   </div>
 </div>
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script>
+var isSignUp={{isSignUp}}
+console.log(isSignUp);
+$(document).ready(function(){
+
+console.log("page ready ");
+if(isSignUp){
+
+}
+else{
+
+        $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
+    
+}
+});
+
+</script>
