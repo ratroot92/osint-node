@@ -8,12 +8,21 @@ const path=require('path');
 const exhbs  = require('express-handlebars');
 const cookieParser=require('cookie-parser');
 const expressSession=require('express-session');
+const cors=require('cors');
 
 
 
-//require routres 
+
+//require routres for local_app 
 var loginRouter=require('./local_app/routes/login/login.route');
 var userRouter=require('./local_app/routes/user/user.route')
+
+
+//end require routers 
+
+//require routres for api 
+var api_loginRouter=require('./restfull_app/routes/login.route');
+
 
 
 //end require routers 
@@ -21,10 +30,18 @@ var userRouter=require('./local_app/routes/user/user.route')
 const app=express();
 
 
-
+app.use(cors());
+app.use(function (req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    next();
+    });
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 app.use(cookieParser('secret'));
+
 app.use(expressSession({
     resave: true,
     saveUninitialized: true
@@ -56,9 +73,14 @@ app.set('view engine', 'hbs');
 
 
 
-//register routes here 
+//register routes here local app
 app.use('/',loginRouter);
 app.use('/user',userRouter);
+//end reghister routes here 
+
+//register routes here restfull_api
+app.use('/api/login',api_loginRouter);
+
 //end reghister routes here 
 
 const PORT =process.env.PORT || 3001;
