@@ -1,0 +1,62 @@
+import React, { Component } from 'react';
+
+export default class Dashboard extends Component {
+
+
+constructor(props){
+	super(props);
+	this.state={
+		userlist:[],
+	}
+//this.api = this.api.bind(this);
+}
+
+
+ async componentDidMount(){
+ 	//start of function 1
+this.api('login/users').then((response)=>{
+
+	if(response.status=='200'){
+	console.log(`response.status : ${response.status}`);
+	console.log(`response info : ${response.info}`);
+	console.log(`response message: ${response.message}`);
+	console.log(response);			
+	}
+	else{
+	console.log(response);
+	}
+});
+//end 
+
+}
+
+ api =async url =>{
+ 	  try {
+const auth_token=localStorage.getItem('auth_token');
+const settings = {
+method: 'GET',
+headers: {
+ 'Content-Type': 'application/json',
+  'Accept': 'application/json',
+"Authorization": `Bearer ${auth_token}`,
+}
+}
+	const baseUrl='http://localhost:3001/api/login/users';
+	const response=await fetch(baseUrl,settings);
+	const data=await response.json()
+	return data;
+ } catch(e) {
+        console.log('error: ', e);  
+    }
+}
+
+	render() {
+
+		return (
+			<div>Dashboard Page</div>
+		);
+	}
+}
+
+
+

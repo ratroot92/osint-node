@@ -1,0 +1,30 @@
+
+
+
+let URL='http://localhost:3001/api/login/users';
+console.log(`GET Request :${URL}`)
+const auth_token=localStorage.getItem('auth_token');
+fetch(URL,{
+method:"GET",
+headers:{
+"Accept":"application/json",
+"Content-Type":"application/json",
+ "Authorization": `Bearer ${auth_token}`,
+},
+
+}).then((result)=>{
+result.json().then((resposne)=>{
+	
+	if(resposne.status=='200'){
+	console.log(`resposne.status : ${resposne.status}`);
+	console.log(`resposne info : ${resposne.info}`);
+	console.log(`resposne message: ${resposne.message}`);
+	console.log(resposne);			
+	}
+	else{
+	console.log(resposne);
+	}
+
+
+})
+})

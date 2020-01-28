@@ -13,6 +13,7 @@ const cors=require('cors');
 
 
 
+
 //require routres for local_app 
 var loginRouter=require('./local_app/routes/login/login.route');
 var userRouter=require('./local_app/routes/user/user.route')
@@ -84,7 +85,7 @@ app.use('/api/login',api_loginRouter);
 //end reghister routes here 
 
 const PORT =process.env.PORT || 3001;
-app.listen(PORT,(err)=>{
+let server=app.listen(PORT,(err)=>{
     if(!err){
         console.log("server has beens started at port = "+PORT);
     }
@@ -92,3 +93,7 @@ app.listen(PORT,(err)=>{
         console.log("error at server "+err);
     }
 });
+let io = require('socket.io')(server);
+
+// initialize my socketio module and pass it the io instance
+require('./socket.js')(io);
