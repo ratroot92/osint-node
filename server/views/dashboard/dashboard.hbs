@@ -20,6 +20,25 @@
 
 
 
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    $(document).ready(function() {
+        $(window).on('beforeunload', function(){
+    socket.close();
+});
+    console.log("socket ready function called ")
+       var socket = io.connect('http://localhost:3001');
+       var jsondata = "";
+
+       socket.on('message', function(data){
+            console.log("socket connection ");
+         console.log('got data from server',data)
+         jsondata = JSON.stringify(data);
+         //console.log('jsondata',jsondata)
+         $('.results').html(jsondata);
+       });
+    });  
+</script>
 <script>
 //chart # 5 //pco
 
@@ -1023,6 +1042,7 @@ pieSeries.hiddenState.properties.startAngle = -90;
         <a class="nav-link" href="#">Features</a>
       </li>
       <li class="nav-item">
+        
         <a class="nav-link" href="#">Pricing</a>
       </li>
       <li class="nav-item dropdown">
@@ -1068,6 +1088,13 @@ pieSeries.hiddenState.properties.startAngle = -90;
 </nav>
 <!--/.Navbar -->
         </div>
+    </div>
+
+    <div class="row">
+          {{#if userList }}
+          <p class="text-white" style="font-size :100px;">{{userList}}</p c>
+          
+        {{/if}}
     </div>
     <div class="row p-3">
         <div class="col-md-6 m-0 p-0 ">

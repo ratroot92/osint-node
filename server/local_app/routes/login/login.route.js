@@ -1,5 +1,8 @@
 const app = require("express");
 const router = app.Router();
+const someController = require('./../../../socket')(io);
+
+
 
 const db = require("./../../..//db/db.js");
 const userModal = require("./../..//models/user.model");
@@ -21,12 +24,14 @@ router.get("/logout", (req, res, next) => {
 
 router.get("/dashboard", (req, res, next) => {
     let user=req.session.user;
+    let listUsers;
     if(user){
         req.session.message = {
             type: "",
             intro: "",
             message: ""
           };
+          
         res.render("dashboard/dashboard");
     }
     else{
@@ -36,15 +41,23 @@ res.redirect('/');
   });
 
 router.post("/login", (req, res, next) => {
-  userModal.findOne(
-    { email: req.body.email, password: req.body.password },
-    (err, user) => {
+  userModal.findOne({ email: req.body.email, password: req.body.password },(err, user) => {
       if (!err && user) {
         console.log("user found ");
         console.log(user);
         req.session.user=user;
-    
-          res.render("./dashboard/dashboard",{user:user,message:{type:'success',intro:'Login',message:'Welcome '+user.name}});
+        userModal.count({},(err,result)=>{
+          console.log("query successfull")
+          if(err){
+            console.log(err);
+          }
+          else{
+            console.log('UserList : '+result)
+            res.render("./dashboard/dashboard",{user:user,message:{type:'success',intro:'Login',message:'Welcome '+user.name,},userList:result});
+          }
+         
+      })
+         
       } 
      
       
