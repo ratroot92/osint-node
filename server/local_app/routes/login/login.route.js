@@ -1,6 +1,6 @@
 const app = require("express");
 const router = app.Router();
-const someController = require('./../../../socket')(io);
+
 
 
 
@@ -40,6 +40,47 @@ res.redirect('/');
    
   });
 
+router.get('/socket',(req,res,next)=>{
+  function getRandomInt(max) {
+    return Math.floor(Math.random() * Math.floor(max));
+  }
+  const sendRandomData = () => {
+    const facebook = getRandomInt(100);
+    const twitter = getRandomInt(100);
+    const linkedin = getRandomInt(100);
+    const news = getRandomInt(100);
+    const instagram = getRandomInt(100);
+
+    const data= [{
+      "name": "Facebook ",
+      "value": facebook,
+  }, {
+      "name": "Twitter ",
+      "value": twitter,
+  }, {
+      "name": "Linked In ",
+      "value": linkedin,
+  }, {
+      "name": "News ",
+      "value": news,
+  }, {
+      "name": "Instagram ",
+      "value": instagram,
+  },];
+
+   // const data = {facebook,twitter,linkedin,news,instagram};
+     // data=JSON.parse(data);
+    global.io.emit('news', data);
+    console.log(data);
+};
+
+const interval = setInterval(sendRandomData, 1000);  
+});
+  
+
+  
+
+
 router.post("/login", (req, res, next) => {
   userModal.findOne({ email: req.body.email, password: req.body.password },(err, user) => {
       if (!err && user) {
@@ -52,6 +93,7 @@ router.post("/login", (req, res, next) => {
             console.log(err);
           }
           else{
+          
             console.log('UserList : '+result)
             res.render("./dashboard/dashboard",{user:user,message:{type:'success',intro:'Login',message:'Welcome '+user.name,},userList:result});
           }

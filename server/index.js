@@ -94,36 +94,39 @@ let server=app.listen(PORT,(err)=>{
     }
 });
 
-const io = require('socket.io')(server);
-// initialize my socketio module and pass it the io instance
+var io = require('socket.io')(server);
+global.io = io; //added
+require('./socket.js')(io)
 
-io.on('connection', (socket) => {
-    console.log('The user is connected');
 
-    socket.on('new-message', (message,userInfo) => {
-        console.log(userInfo);
-        console.log(message);
 
-      io.emit('message', {type:'new-message', text: message});   
-    });
+// io.on('connection', (socket) => {
+//     console.log('The user is connected');
 
-    socket.on('disconnect', function(){
-      console.log('The user is disconnected');
-    });
+//     socket.on('new-message', (message,userInfo) => {
+//         console.log(userInfo);
+//         console.log(message);
 
-    socket.on('add-message', (data) => {
-       // console.log(userInfo);
-      //  console.log(message);
-      data=[1,2,3];
-      io.emit('message', {type:'new-message', data: data});   
-    });
+//       io.emit('message', {type:'new-message', text: message});   
+//     });
 
-    socket.on('add-record', (record) => {
-      io.emit('getrecord', {type:'new-record', text: record});   
-    });
-    data=[1,2,3];
-    io.emit('message', {type:'new-message', data: data}); 
-  });
+//     socket.on('disconnect', function(){
+//       console.log('The user is disconnected');
+//     });
+
+//     socket.on('add-message', (data) => {
+//        // console.log(userInfo);
+//       //  console.log(message);
+//       data=[1,2,3];
+//       io.emit('message', {type:'new-message', data: data});   
+//     });
+
+//     socket.on('add-record', (record) => {
+//       io.emit('getrecord', {type:'new-record', text: record});   
+//     });
+//     data=[1,2,3];
+//     io.emit('message', {type:'new-message', data: data}); 
+//   });
 
 
   module.export = express();

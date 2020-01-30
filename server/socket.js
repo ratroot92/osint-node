@@ -2,7 +2,12 @@
 module.exports = (io) => {
    // console.log('IO: ', io);
     io.on('connect', socket => {
-       // handle various socket connections here
+      socket.on('news', (message,userInfo) => {
+                 console.log(userInfo);
+                 console.log(message);
+         
+               io.emit('message', {type:'new-message', text: message});   
+             });
     });
 
     // put any other code that wants to use the io variable

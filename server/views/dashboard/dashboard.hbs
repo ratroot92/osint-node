@@ -21,65 +21,78 @@
 
 
 <script src="/socket.io/socket.io.js"></script>
+
 <script>
-    $(document).ready(function() {
-        $(window).on('beforeunload', function(){
-    socket.close();
-});
-    console.log("socket ready function called ")
-       var socket = io.connect('http://localhost:3001');
-       var jsondata = "";
+  var chart; 
 
-       socket.on('message', function(data){
-            console.log("socket connection ");
-         console.log('got data from server',data)
-         jsondata = JSON.stringify(data);
-         //console.log('jsondata',jsondata)
-         $('.results').html(jsondata);
-       });
-    });  
-</script>
-<script>
-//chart # 5 //pco
-
-    //fetch('http://localhost:3001/ajax_loaded_pyramid_chart').then((res)=>res.json()).then((data)=>{
-    var chart_values = { facebook: 100, twitter: 85, linkedin: 55, news: 24, instagram: 46 };
-
-    am4core.ready(function () {
-        console.log("ajax_loaded");
-        console.log(chart_values);
+ $(document).ready(function() {
+      $(window).on('beforeunload', function () {
+         socket.close();
+     });
+     var socket = io.connect('http://localhost:3001/');
+    // var chart_values1 = { facebook: 100, twitter: 85, linkedin: 55, news: 24, instagram: 46 };
+let data12=[{
+            "name": "Facebook ",
+            "value": 12,
+        }, {
+            "name": "Twitter ",
+            "value": 56,
+        }, {
+            "name": "Linked In ",
+            "value": 67,
+        }, {
+            "name": "News ",
+            "value": 76,
+        }, {
+            "name": "Instagram ",
+            "value": 76,
+        },];
+        
+     
+    
+   const chart_am= am4core.ready(function () {
 
         // Themes begin
         am4core.useTheme(am4themes_animated);
         // Themes end
         var chart = am4core.create("chart_5", am4charts.SlicedChart);
         chart.paddingBottom = 30;
-        chart.data = [{
-            "name": "Facebook ",
-            "value": chart_values.facebook,
-        }, {
-            "name": "Twitter ",
-            "value": chart_values.twitter,
-        }, {
-            "name": "Linked In ",
-            "value": chart_values.linkedin,
-        }, {
-            "name": "News ",
-            "value": chart_values.news,
-        }, {
-            "name": "Instagram ",
-            "value": chart_values.instagram,
-        },];
-
+         socket.on('news', function (data) {
+         console.log(data);  
+        chart.data =data;
+            });
         var series = chart.series.push(new am4charts.PyramidSeries());
         series.dataFields.value = "value";
         series.dataFields.category = "name";
         series.alignLabels = true;
         series.valueIs = "height";
+ 
+    
+ 
 
     });
+   
+
+     
+  //document ready end
+ });
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <script>
+     var socket = io.connect('http://localhost:3001/');
       var chart_6 = { facebook: 100, twitter: 85, linkedin: 55, news: 24, instagram: 46 };
 am4core.ready(function() {
 
@@ -91,22 +104,10 @@ am4core.useTheme(am4themes_animated);
 var chart = am4core.create("chart_6", am4charts.XYChart);
 
 // Add data
-chart.data = [{
-            "name": "Facebook ",
-            "value": chart_6.facebook,
-        }, {
-            "name": "Twitter ",
-            "value": chart_6.twitter,
-        }, {
-            "name": "Linked In ",
-            "value": chart_6.linkedin,
-        }, {
-            "name": "News ",
-            "value": chart_6.news,
-        }, {
-            "name": "Instagram ",
-            "value": chart_6.instagram,
-        },];
+socket.on('news', function (data) {
+         console.log(data);  
+        chart.data =data;
+            });
 
 // Create axes
 
@@ -247,6 +248,7 @@ columnTemplate.strokeOpacity = 1;
 </script>
 
 <script>
+       var socket = io.connect('http://localhost:3001/');
     // fetch('http://localhost:3001/ajax_loaded_pyramid_chart').then((res)=>res.json()).then((data)=>{
     var chart_values = { facebook: 100, twitter: 85, linkedin: 55, news: 24, instagram: 46 };
     am4core.ready(function () {
@@ -259,29 +261,17 @@ columnTemplate.strokeOpacity = 1;
         var chart = am4core.create("radial_histogram", am4charts.PieChart);
 
         // Add data
-        chart.data = [{
-            "country": "Facebook ",
-            "values": chart_values.facebook,
-        }, {
-            "country": "Twitter ",
-            "values": chart_values.twitter,
-        }, {
-            "country": "Linked In ",
-            "values": chart_values.linkedin,
-        }, {
-            "country": "News ",
-            "values": chart_values.news,
-        }, {
-            "country": "Instagram ",
-            "values": chart_values.instagram,
-        },];
+        socket.on('news', function (data) {
+         console.log(data);  
+        chart.data =data;
+            });
         // Set inner radius
         chart.innerRadius = am4core.percent(100);
 
         // Add and configure Series
         var pieSeries = chart.series.push(new am4charts.PieSeries());
-        pieSeries.dataFields.value = "values";
-        pieSeries.dataFields.category = "country";
+        pieSeries.dataFields.value = "value";
+        pieSeries.dataFields.category = "name";
         pieSeries.slices.template.stroke = am4core.color("#fff");
         pieSeries.slices.template.strokeWidth = 2;
         pieSeries.slices.template.strokeOpacity = 1;
@@ -975,6 +965,7 @@ columnTemplate.strokeOpacity = 1;
 
 </script>
 <script>
+    var socket = io.connect('http://localhost:3001/');
 am4core.ready(function() {
 
 // Themes begin
@@ -986,22 +977,10 @@ var chart = am4core.create("chart_1", am4charts.PieChart);
 
 
 // Add data
- chart.data = [{
-            "name": "Facebook ",
-            "value": chart_values.facebook,
-        }, {
-            "name": "Twitter ",
-            "value": chart_values.twitter,
-        }, {
-            "name": "Linked In ",
-            "value": chart_values.linkedin,
-        }, {
-            "name": "News ",
-            "value": chart_values.news,
-        }, {
-            "name": "Instagram ",
-            "value": chart_values.instagram,
-        },];
+ socket.on('news', function (data) {
+         console.log(data);  
+        chart.data =data;
+            });
 
 // Add and configure Series
 var pieSeries = chart.series.push(new am4charts.PieSeries());
@@ -1091,10 +1070,9 @@ pieSeries.hiddenState.properties.startAngle = -90;
     </div>
 
     <div class="row">
-          {{#if userList }}
-          <p class="text-white" style="font-size :100px;">{{userList}}</p c>
-          
-        {{/if}}
+         <div class="col-md-12">
+             <h1>Total user : {{userList}}</h1>
+         </div>
     </div>
     <div class="row p-3">
         <div class="col-md-6 m-0 p-0 ">
