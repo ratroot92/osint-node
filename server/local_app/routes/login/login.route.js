@@ -12,6 +12,12 @@ router.get("/", (req, res, next) => {
 });
 
 
+router.get("/chart", (req, res, next) => {
+  console.log("route called");
+  res.render("chart" );
+});
+
+
 router.get("/logout", (req, res, next) => {
   req.session.user=null;
   req.session.message = {
@@ -45,28 +51,32 @@ router.get('/socket',(req,res,next)=>{
     return Math.floor(Math.random() * Math.floor(max));
   }
   const sendRandomData = () => {
-    const facebook = getRandomInt(100);
-    const twitter = getRandomInt(100);
-    const linkedin = getRandomInt(100);
-    const news = getRandomInt(100);
-    const instagram = getRandomInt(100);
+    const facebook = getRandomInt(50);
+    const twitter = getRandomInt(50);
+    const linkedin = getRandomInt(50);
+    const news = getRandomInt(50);
+    const instagram = getRandomInt(50);
 
-    const data= [{
-      "name": "Facebook ",
-      "value": facebook,
-  }, {
-      "name": "Twitter ",
-      "value": twitter,
-  }, {
-      "name": "Linked In ",
-      "value": linkedin,
-  }, {
-      "name": "News ",
-      "value": news,
-  }, {
-      "name": "Instagram ",
-      "value": instagram,
-  },];
+  //   const data= [{
+  //     "name": "Facebook ",
+  //     "value": facebook,
+  // }, {
+  //     "name": "Twitter ",
+  //     "value": twitter,
+  // }, {
+  //     "name": "Linked In ",
+  //     "value": linkedin,
+  // }, {
+  //     "name": "News ",
+  //     "value": news,
+  // }, {
+  //     "name": "Instagram ",
+  //     "value": instagram,
+  // },];
+
+  
+  const data= [facebook,twitter,linkedin,news,instagram,instagram];
+
 
    // const data = {facebook,twitter,linkedin,news,instagram};
      // data=JSON.parse(data);
