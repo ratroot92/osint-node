@@ -12,6 +12,12 @@ router.get("/", (req, res, next) => {
 });
 
 
+router.get("/twitter/dashboard", (req, res, next) => {
+  res.render("dashboard/twitterdashboard",{layout: false});
+});
+
+
+
 router.get("/chart", (req, res, next) => {
   console.log("route called");
   res.render("chart" );

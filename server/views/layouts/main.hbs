@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -10,56 +11,63 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
   <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
   <!-- Material Design Bootstrap -->
-  <link rel="stylesheet" href="css/mdb.min.css">
+  <link rel="stylesheet" href="/css/mdb.min.css">
   <!-- Your custom styles (optional) -->
-  <link rel="stylesheet" href="css/style.css">
-  
-  
+  <link rel="stylesheet" href="/css/style.css">
+  <!-- tailwind css -->
+  <link href="/css/tailwind.css" rel="stylesheet">
+
+
 </head>
 <style>
-  #flash_message{
-    top:2px;
+  #flash_message {
+    top: 2px;
     right: 2px;
-    position:absolute;
-    width:300px;
+    position: absolute;
+    width: 300px;
     height: 70px;
-    text-align:center;
-    z-index:9999;
+    text-align: center;
+    z-index: 9999;
 
   }
 </style>
+
 <body>
 
-{{#if message}}
-<div class="d-flex flex-row justify-content-end  " >
-  <div class="alert alert m-0 p-0   alert-{{message.type}}" id="flash_message">
-<button type="button" class="close" data-dismiss="alert">&times;</button>
-    <strong class="text-dark font-weight-bold"style="font-size :20px">{{message.intro}}</strong>
-    <p class="font-weight-bold text-{{message.type}}" >{{message.message}}</p>
-  </div> 
+  {{#if message}}
+  <div class="d-flex flex-row justify-content-end  ">
+    <div class="alert alert m-0 p-0   alert-{{message.type}}" id="flash_message">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <strong class="text-dark font-weight-bold" style="font-size :20px">{{message.intro}}</strong>
+      <p class="font-weight-bold text-{{message.type}}">{{message.message}}</p>
+    </div>
   </div>
   {{/if}}
-{{{body}}}
- 
-<!-- Footer -->
-  <!-- End your project here-->
+  {{{body}}}
+
+
+
+
+
 
   <!-- jQuery -->
-  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <script type="text/javascript" src="/js/jquery.min.js"></script>
 
   <!-- Bootstrap tooltips -->
-  <script type="text/javascript" src="js/popper.min.js"></script>
+  <script type="text/javascript" src="/js/popper.min.js"></script>
   <!-- Bootstrap core JavaScript -->
-  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="/js/bootstrap.min.js"></script>
   <!-- MDB core JavaScript -->
-  <script type="text/javascript" src="js/mdb.min.js"></script>
+  <script type="text/javascript" src="/js/mdb.min.js"></script>
   <!-- Your custom scripts (optional) -->
-  <script type="text/javascript"></script>
-  <script src="js/js.js"></script>
-  <script src="js/chart_js.min.js"></script>
-  <script src="js/charts/barchart.js"></script>
+  <script src="/js/js.js"></script>
+  <script src="/js/chart_js.min.js"></script>
+  <script src="/js/charts/barchart.js"></script>
+  {{!-- <script src="/js/sources/facebook.js"></script> --}}
+
 
 </body>
+
 </html>

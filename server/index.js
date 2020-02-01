@@ -16,7 +16,7 @@ const cors=require('cors');
 
 //require routres for local_app 
 var loginRouter=require('./local_app/routes/login/login.route');
-var userRouter=require('./local_app/routes/user/user.route')
+var sourcesRouter=require('./local_app/routes/sources/sources.route')
 
 
 //end require routers 
@@ -62,13 +62,8 @@ app.engine( 'hbs', exhbs( {
   defaultLayout: 'main',
  
 }));
-app.set('views',path.join(__dirname,'views'));
-app.use(express.static(__dirname + "/public", {
-    index: false, 
-    immutable: true, 
-    cacheControl: true,
-    maxAge: "30d"
-}));
+app.set('/views',path.join(__dirname,'views'));
+app.use(express.static('public'))
 app.use('/mdbootstrap', express.static(__dirname + '/node_modules/mdbootstrap'));
 app.set('view engine', 'hbs');
 
@@ -76,7 +71,7 @@ app.set('view engine', 'hbs');
 
 //register routes here local app
 app.use('/',loginRouter);
-app.use('/user',userRouter);
+app.use('/sources',sourcesRouter);
 //end reghister routes here 
 
 //register routes here restfull_api
