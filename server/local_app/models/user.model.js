@@ -1,33 +1,37 @@
-var db = require('mongoose');
-  var Schema = db.Schema;
+var db = require("mongoose");
+var Schema = db.Schema;
 
-  var UserSchema = new Schema({
-    _id:  db.Types.ObjectId,
-    name:{
-       type:String,
-       reequired:true,
-    },
-    
-    
+var UserSchema = new Schema({
+  _id: db.Types.ObjectId,
+  name: {
+    type: String,
+    required: true
+  },
 
-    email:{
-        type:String,
-        reequired:true,
-     }, 
+  email: {
+    type: String,
+    required: true
+  },
 
+  password: {
+    type: String,
+    required: true
+  },
 
-     password:{
-        type:String,
-        reequired:true,
-     }, 
+  status: {
+    type: String,
+    required: false
+  },
+  created_at: {
+    type: String,
+    default: Date.now,
+    required: false
+  },
+  updated_at: {
+    type: String,
+    default: Date.now,
+    required: false
+  }
+});
 
-
-     status:{
-        type:String,
-        reequired:false,
-     } ,
-   
-  });
-
-
-  module.exports = db.model('User', UserSchema);
+module.exports = db.model("User", UserSchema);
