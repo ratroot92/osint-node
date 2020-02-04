@@ -1,8 +1,72 @@
 // $("#clearBTN").on("click", function() {});
-// //
+
+$(document).ready(function(){
+    $('#facebook_person_table').DataTable( {
+        "paging": true,
+        "dataSrc": "Data",
+        "pageLength": 10,
+        "processing": true,
+        "serverSide": true,
+        "stateSave": true,
+        fixedHeader: true,
+        responsive: true,
+        lengthChange: false,
+        //scrollY: 400,
+        
+        select: true,
+        "autoWidth": true,
+        "select": true,
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print','colvis'
+        ],
+        'ajax': {
+            'type': 'POST',
+            'url': 'http://localhost:3001/sources/add/facebook/populatefacebookPersonTargets'
+        },
+        'columns':
+            [
+                { 'data': '', "defaultContent": "", '': '' },
+            { 'data': 'author_type', "defaultContent": "", 'name': 'Author Type' },
+            { 'data': 'author_id', "defaultContent": "", 'name': 'Author ID' },
+            { 'data': 'author_name', "defaultContent": "", 'name': 'Author Name' },
+            { 'data': 'author_account', "defaultContent": "", 'name': 'Author Account' },
+            { 'data': 'author_url', "defaultContent": "", 'name': 'Author URL' },
+            { 'data': 'expired_on', "defaultContent": "", 'name': 'Expired On' },
+            { 'data': 'need_screenshots', "defaultContent": "", 'name': 'Screenshots' },
+            { 'data': 'created_at', "defaultContent": "", 'name': 'Created at' },
+            { 'data': 'updated_at', "defaultContent": "", 'name': 'Updated at' }  
+            ],
+            // "select":[ {
+            //     style: 'os',
+            //     selector: 'td:first-child'
+            //     },
+            // ],
+        
+
+        columnDefs: [ {
+            orderable: false,
+            className: 'select-checkbox',
+            defaultContent: '',
+            targets:   0,
+            "searchable": false,
+        } ],
+        select: {
+            style: 'multi',
+            selector: 'td:first-child'
+        },
+        order: [[ 1, 'asc' ]]
 
 
 
+
+
+
+
+        
+    });
+});
+   
 
 
 
