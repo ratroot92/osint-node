@@ -1,7 +1,7 @@
 var db = require("mongoose");
 var Schema = db.Schema;
 
-var UserSchema = new Schema({
+var Facebook_Person_Target = new Schema({
   _id: db.Types.ObjectId,
   author_type: {
     type: String,
@@ -48,4 +48,4 @@ var UserSchema = new Schema({
   }
 });
 
-module.exports = db.model("FacebookTarget ", UserSchema);
+module.exports = db.model("Facebook_Person_Target ", Facebook_Person_Target);

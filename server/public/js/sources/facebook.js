@@ -6,11 +6,13 @@ $(document).ready(function(){
         "dataSrc": "Data",
         "pageLength": 10,
         "processing": true,
+        "pagingType":'full_numbers',
         "serverSide": true,
         "stateSave": true,
         fixedHeader: true,
         responsive: true,
         lengthChange: false,
+      //  "order": [[ 3, "desc" ]], //order by column number statrting from zero 
         //scrollY: 400,
         
         select: true,
@@ -22,7 +24,7 @@ $(document).ready(function(){
         ],
         'ajax': {
             'type': 'POST',
-            'url': 'http://localhost:3001/sources/add/facebook/populatefacebookPersonTargets'
+            'url': 'http://localhost:3001/sources/add/facebook/populateFacebookPersonTargets'
         },
         'columns':
             [
@@ -51,6 +53,8 @@ $(document).ready(function(){
             targets:   0,
             "searchable": false,
         } ],
+        
+       
         select: {
             style: 'multi',
             selector: 'td:first-child'
@@ -78,6 +82,96 @@ $("#author_id_err").hide();
 $("#author_name_err").hide();
 $("#author_url_err").hide();
 $("#author_account_err").hide();
+
+
+$("#group_load_icon").hide();
+$("#group_smart_search_err").hide();
+$("#group_author_id_err").hide();
+$("#group_author_name_err").hide();
+$("#group_author_url_err").hide();
+$("#group_author_account_err").hide();
+
+
+
+$(document).ready(function(){
+    $('#facebook_group_table').DataTable( {
+        "paging": true,
+        "dataSrc": "Data",
+        "pageLength": 10,
+        "processing": true,
+        "pagingType":'full_numbers',
+        "serverSide": true,
+        "stateSave": true,
+        fixedHeader: true,
+        responsive: true,
+        lengthChange: false,
+      //  "order": [[ 3, "desc" ]], //order by column number statrting from zero 
+        //scrollY: 400,
+        
+        select: true,
+        "autoWidth": true,
+        "select": true,
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print','colvis'
+        ],
+        'ajax': {
+            'type': 'POST',
+            'url': 'http://localhost:3001/sources/add/facebook/populateFacebookGroupTargets'
+        },
+        'columns':
+            [
+                { 'data': '', "defaultContent": "", '': '' },
+            { 'data': 'author_type', "defaultContent": "", 'name': 'Author Type' },
+            { 'data': 'author_id', "defaultContent": "", 'name': 'Author ID' },
+            { 'data': 'author_name', "defaultContent": "", 'name': 'Author Name' },
+            { 'data': 'author_account', "defaultContent": "", 'name': 'Author Account' },
+            { 'data': 'author_url', "defaultContent": "", 'name': 'Author URL' },
+            { 'data': 'expired_on', "defaultContent": "", 'name': 'Expired On' },
+            { 'data': 'need_screenshots', "defaultContent": "", 'name': 'Screenshots' },
+            { 'data': 'created_at', "defaultContent": "", 'name': 'Created at' },
+            { 'data': 'updated_at', "defaultContent": "", 'name': 'Updated at' }  
+            ],
+            // "select":[ {
+            //     style: 'os',
+            //     selector: 'td:first-child'
+            //     },
+            // ],
+        
+
+        columnDefs: [ {
+            orderable: false,
+            className: 'select-checkbox',
+            defaultContent: '',
+            targets:   0,
+            "searchable": false,
+        } ],
+        
+       
+        select: {
+            style: 'multi',
+            selector: 'td:first-child'
+        },
+        order: [[ 1, 'asc' ]]
+
+
+
+
+
+
+
+        
+    });
+});
+
+
+
+$("#page_load_icon").hide();
+$("#page_smart_search_err").hide();
+$("#page_author_id_err").hide();
+$("#page_author_name_err").hide();
+$("#page_author_url_err").hide();
+$("#page_author_account_err").hide();
 
 // clearForm();
 
