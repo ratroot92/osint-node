@@ -76,7 +76,7 @@ $(document).ready(function(){
 
 // //start settings for app
 
-$("#load_icon").hide();
+$("#person_load_icon").hide();
 $("#smart_search_err").hide();
 $("#author_id_err").hide();
 $("#author_name_err").hide();

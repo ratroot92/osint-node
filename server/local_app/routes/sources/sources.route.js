@@ -250,12 +250,53 @@ router.post('/add/facebook/populateFacebookGroupTargets',(req,res,next)=>{
 
 
 
+//facebook page routes 
 
 
 
 
+router.post('/add/facebook/add_facebook_page_target/',(req,res,next)=>{
+    console.log(req.body);
+    let New_fb_GroupTargetModal= new fb_GroupTargetModal({
+        _id:new db.Types.ObjectId(),
+        author_type:req.body.page_author_type,
+        author_id:req.body.page_author_id,
+        author_name:req.body.page_author_name,
+        author_account:req.body.page_author_account,
+        author_url:req.body.page_author_url,
+        interval:req.body.page_interval,
+        expired_on:req.body.page_expired_on,
+        need_screenshots:req.body.page_need_screenshots,
+      
+    }).save((err,group_target)=>{
+        if(!err){
+        fb_GroupTargetModal.find({},(err,all_facebook_groups_targets)=>{
+            if(!err && all_facebook_groups_targets){
+                console.log("All facebook group target fetched successfully");
+                console.log("Facebook group target inserted successfully ");
+                console.log(group_target);
+                res.render('sources/facebook',{target:group_target,message:{type:'success',intro:'Osint Notifier ',message:'facebook group target successfully added  '},all_facebook_group_targets:all_facebook_groups_targets})
+            }
+            else{
+                console.log("Error ! while attemping to fetch all facebook_group_targets ");
+                console.log("Facebook group target inserted successfully ");
+                console.log(group_target);
+                res.render('sources/facebook',{target:group_target,message:{type:'warning',intro:'Osint Notifier ',message:'facebook group target successfully added || all facebook group targets list failed  '}})
+            }
 
+        })
 
+        }  
+        else{
+            console.log("Error ! while attemping to insert facebook target ");
+            console.log(err);
+            console.log("Error ! while attemping to fetch all facebook_group_targets ");
+            console.log(group_target);
+            res.render('sources/facebook',{target:group_target,message:{type:'danger',intro:'Osint Notifier ',message:'failed to add a new facebook group target    '}})
+        } 
+    });
+});
+//end add facebook person target 
 
 
 
